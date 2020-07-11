@@ -1,8 +1,8 @@
-// generate random number 1-50
+// generate random number 19-20
 
 // display 4 crystals and assign a number to it. 
 // Add click functions that updates total value. 
-// Value of each crystal should be between 1-15
+// Value of each crystal should be between 1-12
 
 // *****Ending game
 

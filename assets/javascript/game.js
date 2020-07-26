@@ -3,9 +3,14 @@ var lossCount = 0;
 var targetScore = 0;
 var currentScore = 0;
 
+var gemOne = 0;
+var gemTwo = 0;
+var gemThree = 0;
+var gemFour = 0;
 
 $("#totalWins").html(winCount);
 $("#totalLosses").html(lossCount);
+$("#sumTotal").html(currentScore);
 
 
 
@@ -13,13 +18,20 @@ var getRandom = function(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-
+// function to start game
 var newGame = function() {
     // reset the current score
     currentScore = 0;
 
     // set a new target score bt 20-80
     targetScore = getRandom(20, 80);
+
+    //set gem values to 0
+    var gemOne = 0;
+    var gemTwo = 0;
+    var gemThree = 0;
+    var gemFour = 0;
+
 
     // set diff values for each of the crystals between 1-12
 
@@ -28,65 +40,62 @@ var newGame = function() {
     var gemThree = getRandom(1, 12);
     var gemFour = getRandom(1, 12);
 
+    console.log(gemOne + ", " + gemTwo + ", " + gemThree + ", " + gemFour)
+
     // change HTML to reflect changes
     $("#randomNumber").html(targetScore);
     $("#sumTotal").html(currentScore);
-
-    // display 4 crystals and assign a random number to it. 
-    // Value of each crystal should be between 1-12.
-    $("#crystalOne").click(function() {
-        currentScore = currentScore + gemOne;
-        $("#sumTotal").html(currentScore);
-    });
-
-    $("#crystalTwo").click(function() {
-        currentScore = currentScore + gemTwo;
-        $("#sumTotal").html(currentScore);
-
-    });
-    $("#crystalThree").click(function() {
-        currentScore = currentScore + gemThree;
-        $("#sumTotal").html(currentScore);
-    });
-    $("#crystalFour").click(function() {
-        currentScore = currentScore + gemFour;
-        $("#sumTotal").html(currentScore);
-    });
 }
 
-console.log(currentScore);
-console.log(targetScore);
+// update score
+$("#crystalOne").click(function() {
+    currentScore = currentScore + gemOne;
+    //update HTML to reflect updated score
+    $("#sumTotal").html(currentScore);
+    gameReset();
+});
 
-newGame();
-// when click a crystal total score counter updates by crystal random assigned number
+$("#crystalTwo").click(function() {
+    currentScore = currentScore + gemTwo;
+    $("#sumTotal").html(currentScore);
+    gameReset();
 
-// *****Ending game
+});
+$("#crystalThree").click(function() {
+    currentScore = currentScore + gemThree;
+    $("#sumTotal").html(currentScore);
+    gameReset();
+});
+$("#crystalFour").click(function() {
+    currentScore = currentScore + gemFour;
+    $("#sumTotal").html(currentScore);
+    gameReset();
+});
+}
 
-// update "Wins:" if true:
-// total score matches randomly generated number
-// then alert "You Win"
-// update win counter
-//game starts over
 
-
+// function to check if win/loss 
 function gameReset() {
+
+
     if (currentScore === targetScore) {
-        winCount = 0;
-        alert("You Win!!");
+
         winCount++;
         $("#totalWins").text(winCount);
+
+        alert("You Win!!");
         newGame();
+
     } else if (currentScore > targetScore) {
-        alert("Aha! You Lost!!");
         lossCount++;
         $("#totalLosses").text(lossCount);
+
+        alert("Aha! You Lost!!");
         newGame();
     };
 };
 
-console.log(winCount);
-console.log(lossCount);
-gameReset();
+newGame();
 
 
 

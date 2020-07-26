@@ -22,55 +22,52 @@ var getRandom = function(min, max) {
 var newGame = function() {
     // reset the current score
     currentScore = 0;
+    // reset gem values to 0
+    gemOne = 0;
+    gemTwo = 0;
+    gemThree = 0;
+    gemFour = 0;
 
     // set a new target score bt 20-80
     targetScore = getRandom(20, 80);
 
-    //set gem values to 0
-    var gemOne = 0;
-    var gemTwo = 0;
-    var gemThree = 0;
-    var gemFour = 0;
-
-
     // set diff values for each of the crystals between 1-12
 
-    var gemOne = getRandom(1, 12);
-    var gemTwo = getRandom(1, 12);
-    var gemThree = getRandom(1, 12);
-    var gemFour = getRandom(1, 12);
+    gemOne = getRandom(1, 12);
+    gemTwo = getRandom(1, 12);
+    gemThree = getRandom(1, 12);
+    gemFour = getRandom(1, 12);
 
     console.log(gemOne + ", " + gemTwo + ", " + gemThree + ", " + gemFour)
 
     // change HTML to reflect changes
     $("#randomNumber").html(targetScore);
     $("#sumTotal").html(currentScore);
-}
 
-// update score
-$("#crystalOne").click(function() {
-    currentScore = currentScore + gemOne;
-    //update HTML to reflect updated score
-    $("#sumTotal").html(currentScore);
-    gameReset();
-});
+    // run click functions
+    $("#crystalOne").click(function() {
+        currentScore = currentScore + gemOne;
+        //update HTML to reflect updated score
+        $("#sumTotal").html(currentScore);
+        gameReset();
+    });
 
-$("#crystalTwo").click(function() {
-    currentScore = currentScore + gemTwo;
-    $("#sumTotal").html(currentScore);
-    gameReset();
+    $("#crystalTwo").click(function() {
+        currentScore = currentScore + gemTwo;
+        $("#sumTotal").html(currentScore);
+        gameReset();
 
-});
-$("#crystalThree").click(function() {
-    currentScore = currentScore + gemThree;
-    $("#sumTotal").html(currentScore);
-    gameReset();
-});
-$("#crystalFour").click(function() {
-    currentScore = currentScore + gemFour;
-    $("#sumTotal").html(currentScore);
-    gameReset();
-});
+    });
+    $("#crystalThree").click(function() {
+        currentScore = currentScore + gemThree;
+        $("#sumTotal").html(currentScore);
+        gameReset();
+    });
+    $("#crystalFour").click(function() {
+        currentScore = currentScore + gemFour;
+        $("#sumTotal").html(currentScore);
+        gameReset();
+    });
 }
 
 
@@ -96,7 +93,6 @@ function gameReset() {
 };
 
 newGame();
-
 
 
 // update "Losses" if total score is above randomly generated number
